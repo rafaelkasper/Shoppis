@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const MenuHeeader = () => {
+const MenuHeader = () => {
   return (
     <View>
-      <Text>MenuHeeader</Text>
+      <Text>MenuHeader</Text>
     </View>
   );
 };
 
-export default MenuHeeader;
+export default MenuHeader;
 
 const styles = StyleSheet.create({});

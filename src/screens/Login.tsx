@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Login = () => {
-  const [username, setUseername] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -12,7 +12,7 @@ const Login = () => {
       <TextInput
         style={styles.input}
         value={username}
-        onChangeText={setUseername}
+        onChangeText={setUsername}
         autoCapitalize="none"
         placeholder="Insira seu usuário"
       />
