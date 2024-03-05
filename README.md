@@ -46,3 +46,8 @@ Neste trabalho serão avaliados os seguintes indicadores do plano do curso:
   - O código do app
   - Um README explicando as funcionalidades do app, com imagens
   - O bundle e o apk gerados no deploy
+
+## User de exemplo
+
+username: 'kminchelle',
+password: '0lelplR',
