@@ -2,7 +2,7 @@ import axios from "axios";
 import { ReactNode, createContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserDTO } from "../types/User";
-import Toast from "react-native-root-toast";
+import { showError } from "../components/Toast";
 
 type UserContextProps = {
   token: string;
@@ -31,15 +31,7 @@ export const UserContextProvider = ({ children }: UserProviderProps) => {
     try {
       await AsyncStorage.setItem("@token", value);
     } catch (error) {
-      Toast.show("Não foi possível salvar o token", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível salvar o token");
     }
   };
 
@@ -51,15 +43,7 @@ export const UserContextProvider = ({ children }: UserProviderProps) => {
         setToken(value);
       }
     } catch (error) {
-      Toast.show("Não foi possível recuperar o token", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível recuperar o token");
     }
   };
 
@@ -69,15 +53,7 @@ export const UserContextProvider = ({ children }: UserProviderProps) => {
 
       await AsyncStorage.setItem("@user", jsonValue);
     } catch (error) {
-      Toast.show("Não foi possível salvar os dados do usuário", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível salvar os dados do usuário");
     }
   };
 
@@ -88,15 +64,7 @@ export const UserContextProvider = ({ children }: UserProviderProps) => {
 
       setUser(userData);
     } catch (error) {
-      Toast.show("Não foi possível recuperar o usuário", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível recuperar o usuário");
     }
   };
 
@@ -114,15 +82,7 @@ export const UserContextProvider = ({ children }: UserProviderProps) => {
       setToken(response.data.token);
       storeToken(response.data.token);
     } catch (error) {
-      Toast.show("Não foi possível realizar o login", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível realizar o login");
     }
   };
 

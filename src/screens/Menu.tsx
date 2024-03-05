@@ -2,10 +2,10 @@ import { FlatList, StyleSheet } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { ProductDTO } from "../types/Products";
 import axios from "axios";
-import Toast from "react-native-root-toast";
 import { CartContext } from "../contexts/CartContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ItemCard from "../components/ItemCard";
+import { showError } from "../components/Toast";
 
 const Menu = () => {
   const { getCart } = useContext(CartContext);
@@ -20,15 +20,7 @@ const Menu = () => {
         const response = await axios.get<{ products: ProductDTO[] }>(url);
         setProducts(response.data.products);
       } catch (error) {
-        Toast.show("Não foi possível recuperar os produtos", {
-          duration: 3000,
-          position: Toast.positions.BOTTOM,
-          shadow: false,
-          animation: true,
-          hideOnPress: true,
-          delay: 0,
-          backgroundColor: "red",
-        });
+        showError("Não foi possível recuperar os produtos");
       }
     };
     getData();

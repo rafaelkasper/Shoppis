@@ -1,8 +1,7 @@
 import { ReactNode, createContext, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ICartItem, ProductDTO } from "../types/Products";
-import Toast from "react-native-root-toast";
-import { executeNativeBackPress } from "react-native-screens";
+import { showError } from "../components/Toast";
 
 type CartContextProps = {
   cart: ICartItem[];
@@ -27,15 +26,7 @@ export const CartContextProvider = ({ children }: CartProviderProps) => {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem("@cart", jsonValue);
     } catch (error) {
-      Toast.show("Não foi possível salvar o carrinho", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível salvar o carrinho");
     }
   };
 
@@ -45,15 +36,7 @@ export const CartContextProvider = ({ children }: CartProviderProps) => {
       const cartData = jsonValue !== null ? JSON.parse(jsonValue) : null;
       setCart(cartData);
     } catch (error) {
-      Toast.show("Não foi possível recuperar o carrinho", {
-        duration: 3000,
-        position: Toast.positions.BOTTOM,
-        shadow: false,
-        animation: true,
-        hideOnPress: true,
-        delay: 0,
-        backgroundColor: "red",
-      });
+      showError("Não foi possível recuperar o carrinho");
     }
   };
 
