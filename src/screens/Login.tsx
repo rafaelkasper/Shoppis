@@ -1,8 +1,10 @@
 import { StyleSheet, TextInput, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { UserContext } from "../contexts/UserContext";
 
 const Login = () => {
+  const { login } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,7 +28,7 @@ const Login = () => {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => console.log(username, password)}
+        onPress={() => login(username, password)}
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
